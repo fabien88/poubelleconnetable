@@ -12,18 +12,27 @@ Les fonctionnalités suivantes sont attendues : un utilisateur doit pouvoir s’
 
 ### Règles à suivre :
 — Il ne doit pas être possible, pour un utilisateur, d’accéder à (ni modifier) une information concernant un autre utilisateur ;
+
 — L’état de l’application doit être persistant (si l’on éteint puis rallume l’application, elle doit retrouver son état avant extinction) ;
+
 — Toutes les actions doivent pouvoir être réalisées depuis des points d’entrée HTTP dont les entités sont au format JSON ;
+
 — Le modèle du domaine métier ne doit pas permettre de représenter des états invalides ;
+
 — Dans la mesure du possible, tous les traitements doivent être réalisés de façon non bloquante, et utiliser au mieux la capacités de calcul des machines (e.g. multi­cœurs) ;
+
 — Le système doit informer différemment l’utilisateur des échecs selon que ceux­ci sont dus à une erreur de la part de l’utilisateur ou à un problème technique interne.
 
 ### Bonus :
 — Un point d’entrée retournant un graphique (image) montrant l’évolution du volume de déchets au cours du temps ;
+
 — L’API HTTP est découvrable ;
+
 — Une interface Web permet d’utiliser l’application depuis un navigateur Web ;
+
 — Le serveur HTTP est scalable horizontalement (le fait de démarrer plusieurs instances en parallèle
 ne pose pas de problème).
+
 Le plus important lors de votre travail est la maîtrise de ce que vous allez faire. C'est la raison pour laquelle vous avez libre choix sur les technologies, c'est un exercice à effectuer sur GitHub.
 
 ## Tester l'API en ligne
