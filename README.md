@@ -33,7 +33,7 @@ C'est la raison pour laquelle vous avez libre choix sur les technologies, c'est 
 [Google Cloud Endpoint][2]
 
 ### Frontend
-AngularJS
+AngularJS  
 [Angular-google-gapi][3]  
 
 ## Tester l'API en ligne
