@@ -28,13 +28,20 @@ ne pose pas de problème).
 Le plus important lors de votre travail est la maîtrise de ce que vous allez faire.  
 C'est la raison pour laquelle vous avez libre choix sur les technologies, c'est un exercice à effectuer sur GitHub.
 
+## Technos
+### Backend
+[Google Cloud Endpoint][2]
+
+### Frontend
+AngularJS
+[Angular-google-gapi][3]  
+
 ## Tester l'API en ligne
-L'API est déployée sur [Google Cloud Endpoint][2], vous pouvez la tester via l'api Explorer : http://poubelle-connetable.appspot.com/_ah/api/explorer
+L'API est déployée sur Google Cloud Endpoint, et elle est testable via l'api Explorer : http://poubelle-connetable.appspot.com/_ah/api/explorer
 
 Il faut disposer d'un compte Google pour utiliser l'API.
 
-Le front utilise AngularJS + [Angular-google-gapi][3]  
-Version consultable ici : https://poubelle-connetable.appspot.com/
+Coté front, c'est consultable ici : https://poubelle-connetable.appspot.com/
 
 ## Tester l'API en local
 1. mvn appengine:devserver  
