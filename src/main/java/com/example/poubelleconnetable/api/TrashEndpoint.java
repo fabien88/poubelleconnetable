@@ -88,8 +88,8 @@ public class TrashEndpoint {
      * @throws NotFoundException     if the given trash doesn't exists
      */
     @ApiMethod(
-            httpMethod = "POST",
-            path = "me/trashes/{trashName}/empty"
+            httpMethod = "PATCH",
+            path = "me/trashes/{trashName}"
     )
     public void emptyTrash(final User user, @Named("trashName") final String trashName)
             throws UnauthorizedException, NotFoundException {
