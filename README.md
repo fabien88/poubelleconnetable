@@ -33,7 +33,7 @@ L'API est déployée sur [Google Cloud Endpoint][2], vous pouvez la tester via l
 
 Il faut disposer d'un compte Google pour utiliser l'API.
 
-Le front utilise AngularJS + Angular-google-gapi  
+Le front utilise AngularJS + [Angular-google-gapi][3]  
 Version consultable ici : http://poubelle-connetable.appspot.com/
 
 ## Tester l'API en local
@@ -43,3 +43,4 @@ Version consultable ici : http://poubelle-connetable.appspot.com/
 
 [1]: https://developers.google.com/explorer-help/#hitting_local_api  
 [2]: https://cloud.google.com/endpoints/
+[3]: https://github.com/maximepvrt/angular-google-gapi
