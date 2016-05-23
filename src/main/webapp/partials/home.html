@@ -1,0 +1,13 @@
+<button style="margin-bottom: 20px;" class="btn btn-default" type="submit" ui-sref="add">Add a new trash</button>
+<div class="well" ng-repeat="trash in trashes">
+
+	<h2>{{trash.name}}</h2>
+	<h3>{{trash.volume}} L</h3>
+	<a href="" ng-click="empty(trash)">Empty this trash</a> - <a href="" ng-click="delete(trash)">Delete this trash</a>
+
+	<div ng-show="trash.show" class="alert alert-success">
+		<button  ng-click="remove(item)" type="button" class="close" data-dismiss="alert">x</button>
+		<strong>Trash emptyied !</strong>
+	</div>
+
+</div>

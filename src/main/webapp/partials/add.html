@@ -1,0 +1,24 @@
+<button style="margin-bottom: 20px;" class="btn btn-default" type="submit" ui-sref="home">Back to home</button>
+
+<form class="form-horizontal" ng-submit="submitAdd()" name="addTrash">
+<fieldset>
+
+<p>Name</p>
+<!-- Text input-->
+<div class="input-group" ng-class="{'has-error' : !addTrash.trashName.$valid}">
+  <input ng-model="trash.trashName" name="trashName" type="text" required class="form-control input-md">
+</div>
+
+<p>Capacity</p>
+<!-- Text input-->
+<div class="input-group" ng-class="{'has-error' : !addTrash.volume.$valid}">
+  <input ng-model="trash.volume" ng-pattern="/^\d+$/" name="volume" type="text" required class="form-control input-md">
+</div>
+
+<button style="margin-top: 20px;" type="submit" class="btn btn-white btn-rad btn-trans" ng-class="{'disabled' : !addTrash.$valid}">Add</button>
+  <div ng-messages="addTrash.$error" style="color:maroon" role="alert">
+    <div ng-message="apiError">Api Error occurred : {{ addTrash.$error.message }}</div></div>
+  </div>
+
+</fieldset>
+</form>

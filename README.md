@@ -33,6 +33,9 @@ L'API est déployée sur [Google Cloud Endpoint][2], vous pouvez la tester via l
 
 Il faut disposer d'un compte Google pour utiliser l'API.
 
+Le front utilise AngularJS + Angular-google-gapi  
+Version consultable ici : http://poubelle-connetable.appspot.com/
+
 ## Tester l'API en local
 1. mvn appengine:devserver  
 2. Ouvrir chrome en mode [unsafe][1] : Chrome --user-data-dir=test --unsafeltreat-insecure-origin-as-secure=http://localhost:8080,http://0.0.0.0:8080  
