@@ -60,6 +60,13 @@ public class TrashService {
             throw new ConflictException("User has already a trash with that name");
         }
 
+        if (volume == null) {
+            throw new IllegalArgumentException("Volume should not be null");
+        }
+        if (trashName == null) {
+            throw new IllegalArgumentException("Thrash name should not be null");
+        }
+
         final TrashEntity trash = new TrashEntity(
                 createUserKey(user),
                 trashName,
@@ -139,13 +146,21 @@ public class TrashService {
      *
      * @return statistics
      */
-    public List<Date> getTrashLogDateFor(final User user, final String trashName) {
+    protected List<Date> getTrashLogDateFor(final User user, final String trashName, final boolean naturalOrder) {
+
+        final String orderSign;
+        if (naturalOrder) {
+            orderSign = "";
+        } else {
+            orderSign = "-";
+        }
 
         // Retrieve all stored log for a given trash
         final List<EmptiedTrashLogEntity> list = ofy()
                 .load()
                 .type(EmptiedTrashLogEntity.class)
                 .ancestor(createTrashKey(user, trashName)) // We filter on this specific trash
+                .order(orderSign + "date")
                 .list();
 
         // For each emptying log, we add date to the list
@@ -154,6 +169,10 @@ public class TrashService {
             emptyDates.add(entities.getDate());
         }
         return emptyDates;
+    }
+
+    protected List<Date> getTrashLogDateFor(final User user, final String trashName) {
+        return getTrashLogDateFor(user, trashName, true);
     }
 
     /**

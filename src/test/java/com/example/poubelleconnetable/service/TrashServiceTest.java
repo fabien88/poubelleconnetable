@@ -17,9 +17,7 @@ import org.junit.Test;
 import org.unitils.reflectionassert.ReflectionAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 
 public class TrashServiceTest {
     private static final User DEFAULT_USER = new User("test@exemple.com", "", null);
@@ -50,10 +48,14 @@ public class TrashServiceTest {
     public void createTrash() throws Exception {
         this.trashService.createTrash(DEFAULT_USER, "trash1", 1D);
         this.trashService.createTrash(DEFAULT_USER, "trash2", 2D);
-
         try {
             this.trashService.createTrash(DEFAULT_USER, "trash1", 3D);
             Assert.fail("Should not be possible to create same trash name");
+        } catch (final ConflictException e) {
+        }
+        try {
+            this.trashService.createTrash(DEFAULT_USER, "trash1", null);
+            Assert.fail("Should not be possible to create trash with no volume");
         } catch (final ConflictException e) {
         }
 
@@ -65,6 +67,9 @@ public class TrashServiceTest {
     public void emptyTrash() throws Exception {
         createTrash();
         trashService.emptyTrash(DEFAULT_USER, "trash1");
+        Thread.sleep(1000L);
+        trashService.emptyTrash(DEFAULT_USER, "trash1");
+        Thread.sleep(1000L);
         trashService.emptyTrash(DEFAULT_USER, "trash1");
         trashService.emptyTrash(DEFAULT_USER, "trash2");
         try {
@@ -110,12 +115,25 @@ public class TrashServiceTest {
                 1000
         );
 
-        // DEFAULT_USER should have 2 empty log for trash1
+        // DEFAULT_USER should have 3 empty log for trash1
         ReflectionAssert.assertReflectionEquals(
-                Arrays.asList(new Date(), new Date()),
+                Arrays.asList(new Date(), new Date(), new Date()),
                 trashService.getTrashLogDateFor(DEFAULT_USER, "trash1"),
                 ReflectionComparatorMode.LENIENT_DATES
         );
+
+        // Check dates are ordered in natural order
+        List<Date> actualDates = trashService.getTrashLogDateFor(DEFAULT_USER, "trash1", true);
+        List<Date> expectedOrderedDates = new ArrayList<>(actualDates);
+        Collections.sort(expectedOrderedDates);
+        ReflectionAssert.assertReflectionEquals(expectedOrderedDates, actualDates);
+
+        // Check dates are ordered in reverse order
+        actualDates = trashService.getTrashLogDateFor(DEFAULT_USER, "trash1", false);
+        expectedOrderedDates = new ArrayList<>(actualDates);
+        Collections.sort(expectedOrderedDates, Collections.reverseOrder());
+        ReflectionAssert.assertReflectionEquals(expectedOrderedDates, actualDates);
+
         // And one for trash2
         ReflectionAssert.assertReflectionEquals(
                 Arrays.asList(new Date()),
